@@ -12,7 +12,7 @@ void print(char** A) {
 }
 
 bool palindromo(char* word,int n){
-    for(int i=0,f=n-1;i<=f && word[i]!=word[f];i++,f--){
+    for(int i=0,f=n-1;i<f && word[i]!=word[f];i++,f--){
         return 0;
     }
     return 1;
@@ -87,52 +87,31 @@ int find(char**A,char* word,int n){
 }
 
 
-int main()
-{
-    char** A = new char* [5];
-    for (int i = 0; i < 5; i++) {
-        A[i] = new char[6];
+int main(){
+    const int row = 5;
+    const int col = 6;
+
+    char** A = new char* [row];
+    for (char i = 0; i < row; i++)
+    {
+        A[i] = new char[col];
     }
-    **A = 'P';
-    *(*A + 1) = 'J';
-    *(*A + 2) = 'P';
-    *(*A + 3) = 'A';
-    *(*A + 4) = 'T';
-    *(*A + 5) = 'O';
+    char valores[row][col] = {
+        {'P', 'J', 'P', 'A', 'T', 'O'},
+        {'P', 'L', 'O', 'T', 'A', 'P'},
+        {'A', 'T', 'T', 'H', 'L', 'O'},
+        {'T', 'H', 'A', 'T', 'O', 'L'},
+        {'O', 'I', 'P', 'O', 'L', 'M'}};
 
-    **(A + 1) = 'P';
-    *(*(A + 1) + 1) = 'L';
-    *(*(A + 1) + 2) = 'O';
-    *(*(A + 1) + 3) = 'L';
-    *(*(A + 1) + 4) = 'A';
-    *(*(A + 1) + 5) = 'P';
-
-    **(A + 2) = 'A';
-    *(*(A + 2) + 1) = 'T';
-    *(*(A + 2) + 2) = 'T';
-    *(*(A + 2) + 3) = 'H';
-    *(*(A + 2) + 4) = 'L';
-    *(*(A + 2) + 5) = 'O';
-
-    **(A + 3) = 'T';
-    *(*(A + 3) + 1) = 'H';
-    *(*(A + 3) + 2) = 'A';
-    *(*(A + 3) + 3) = 'T';
-    *(*(A + 3) + 4) = 'O';
-    *(*(A + 3) + 5) = 'J';
-
-    **(A + 4) = 'O';
-    *(*(A + 4) + 1) = 'I';
-    *(*(A + 4) + 2) = 'P';
-    *(*(A + 4) + 3) = 'O';
-    *(*(A + 4) + 4) = 'L';
-    *(*(A + 4) + 5) = 'M';
-
-
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            A[i][j] = valores[i][j];
+        }
+    }
 
     print(A);
 
-    char s[]="PATO";
+    char s[]="P";
     int n=sizeof(s)-1;
 
     int res=find(A,s,n);
