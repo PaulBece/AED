@@ -95,20 +95,21 @@ int main(){
     {
         A[i] = new char[col];
     }
-    
-    char pupiletras[row][col] = {
-        {'P', 'J', 'P', 'A', 'T', 'O'},
-        {'P', 'L', 'O', 'T', 'A', 'P'},
-        {'A', 'T', 'T', 'H', 'L', 'O'},
-        {'T', 'H', 'A', 'T', 'O', 'L'},
-        {'O', 'I', 'P', 'O', 'L', 'M'}};
+    if(1){
+        char pupiletras[row][col] = {
+            {'P', 'J', 'P', 'A', 'T', 'O'},
+            {'P', 'L', 'O', 'T', 'A', 'P'},
+            {'A', 'T', 'T', 'H', 'L', 'O'},
+            {'T', 'H', 'A', 'T', 'O', 'L'},
+            {'O', 'I', 'P', 'O', 'L', 'M'}};
 
-    for (int i = 0; i < row; ++i) {
-        for (int j = 0; j < col; ++j) {
-            A[i][j] = pupiletras[i][j];
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < col; ++j) {
+                A[i][j] = pupiletras[i][j];
+            }
         }
     }
-
+    
     print(A);
 
     char s[]="PATO";
