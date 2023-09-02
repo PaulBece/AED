@@ -7,10 +7,8 @@ void print(char** A) {
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             std::cout << A[i][j]<<" ";
-            if (j == row) {
-                std::cout << std::endl;
-            }
         }
+        std::cout << std::endl;
     }
 }
 
