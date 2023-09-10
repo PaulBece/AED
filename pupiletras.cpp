@@ -13,8 +13,9 @@ void print(char** A) {
 }
 
 bool palindromo(char* word,int n){
-    for(int i=0,f=n-1;i<f && word[i]!=word[f];i++,f--){
-        return 0;
+    for(int i=0,f=n-1;i<f;i++,f--){
+        if (word[i]!=word[f])
+            return 0;
     }
     return 1;
 }
