@@ -9,10 +9,10 @@ struct node {
         arr[0] = v;
         next = n;
     }
-    bool full() {
+    bool isFull() {
         return (topN > 4);
     }
-    bool empty() {
+    bool isEmpty() {
         return (topN < 1);
     }
 };
@@ -22,7 +22,7 @@ struct Pila {
     node<T>* top = 0;
     void push(T v) {
         if (top) {
-            if (top->full()) {
+            if (top->isFull()) {
                 top = new node<T>(v, top);
             }
             else {
@@ -38,7 +38,7 @@ struct Pila {
     T pop() {
         T tmp = 0;
         if (top) {
-            if (top->empty()) {
+            if (top->isEmpty()) {
                 node<T>* aux = top;
                 top = top->next;
                 delete aux;
@@ -53,7 +53,7 @@ struct Pila {
         std::cout << "TOP ->";
         while (top) {            
             std::cout << " "<< pop() << " -";  
-            if (top->empty()) {
+            if (top->isEmpty()) {
                 std::cout << "> \n";
                 top = top->next;
             }          
