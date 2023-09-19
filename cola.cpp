@@ -32,7 +32,7 @@ void cola<T>::push(T v) {
         tail = head;
     }
     else {
-        tail->next= new nodo<T>(v, tail);
+        tail->next= new nodo<T>(v);
         tail = tail->next;
     }
 }
@@ -41,17 +41,10 @@ template<class T>
 T cola<T>::pop() {
     T tmp = 0;
     if (!vacio()) {
-        tmp = head->valor;
-        if (head == tail) {
-            delete head;
-            head = 0;
-            tail = 0;
-        }
-        else {
-            nodo<T>* aux = head;
-            head = head -> next;
-            delete aux;
-        }
+        tmp = head->valor;        
+        nodo<T>* aux = head;
+        head = head -> next;
+        delete aux;
     }
     return tmp;
 }
@@ -67,7 +60,7 @@ void cola<T>::popAll() {
 int main()
 {
     cola<int> C;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 14; i++) {
         C.push(i);
     }
     C.popAll();
