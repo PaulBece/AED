@@ -87,4 +87,6 @@ int main() {
     p1.print();
     p1.pop();
     p1.print();
+
+    return 0;
 }
