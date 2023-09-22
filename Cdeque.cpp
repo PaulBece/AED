@@ -13,6 +13,10 @@ public:
     Cdeque<T>() {
         map[5] = new T [10];
     }
+    ~Cdeque<T>(){
+        while(FRONT <= BACK)
+            delete[] map[FRONT++];
+    }
     void push_back(T v);
     void push_front(T v);
     T pop_back();
