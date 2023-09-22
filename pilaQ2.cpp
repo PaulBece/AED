@@ -15,6 +15,13 @@ struct pilaQ {
     nodeQ<T>* TOP = 0;
     T* top = 0;
 
+    ~pilaQ(){
+        while (TOP){
+            nodeQ<T>* tmp=TOP++;
+            delete[] tmp;
+        }
+    }
+
     bool isFull() {
         return (TOP->arr + 4 == top);
     }
