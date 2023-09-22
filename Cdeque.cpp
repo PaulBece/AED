@@ -1,7 +1,7 @@
 #include <iostream>
 
 template <class T>
-class Cdeck {
+class Cdeque {
     T* map[11];
     int FRONT=5;
     int BACK=5;
@@ -10,7 +10,7 @@ class Cdeck {
     T error=0;
     
 public:
-    Cdeck<T>() {
+    Cdeque<T>() {
         map[5] = new T [10];
     }
     void push_back(T v);
@@ -22,7 +22,7 @@ public:
 };
 
 template <class T>
-void Cdeck<T>::push_back(T v) {
+void Cdeque<T>::push_back(T v) {
     if (back <= 9) {
         *(map[BACK] + back++) = v;
     }
@@ -37,7 +37,7 @@ void Cdeck<T>::push_back(T v) {
 }
 
 template <class T>
-void Cdeck<T>::push_front(T v) {
+void Cdeque<T>::push_front(T v) {
     if (front >= 0) {
         *(map[FRONT] + front--) = v;
     }
@@ -52,7 +52,7 @@ void Cdeck<T>::push_front(T v) {
 }
 
 template <class T>
-T Cdeck<T>::pop_back() {
+T Cdeque<T>::pop_back() {
     T tmp = error;
     if (BACK != FRONT || back > front+1) {
         if (back != 0)
@@ -67,7 +67,7 @@ T Cdeck<T>::pop_back() {
 }
 
 template <class T>
-T Cdeck<T>::pop_front() {
+T Cdeque<T>::pop_front() {
     T tmp = error;
     if (BACK != FRONT || back > front+1) {
         if (front != 9)
@@ -82,7 +82,7 @@ T Cdeck<T>::pop_front() {
 }
 
 template <class T>
-int Cdeck<T>::size() {
+int Cdeque<T>::size() {
     int tmp;
     int aux = BACK - FRONT;
     if (aux == 0)
@@ -95,7 +95,7 @@ int Cdeck<T>::size() {
 }
 
 template <class T>
-T& Cdeck<T>::operator [] (int i) {
+T& Cdeque<T>::operator [] (int i) {
     int s = size();
     if (s>i) {
         int aux1, aux2;
@@ -111,7 +111,7 @@ T& Cdeck<T>::operator [] (int i) {
 }
 
 int main() {
-    Cdeck<int> d1;
+    Cdeque<int> d1;
     for (int i = 1; i < 13; i++) {
         d1.push_back(i);
         d1.push_front(i);
