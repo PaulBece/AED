@@ -57,7 +57,7 @@ void Cdeque<T>::push_front(T v) {
 
 template <class T>
 T Cdeque<T>::pop_back() {
-    T tmp = error;
+    T tmp;
     if (BACK != FRONT || back > front+1) {
         if (back != 0)
             tmp = *(map[BACK] + --back);
@@ -67,12 +67,12 @@ T Cdeque<T>::pop_back() {
             tmp = *(map[--BACK] + back);
         }
     }
-    return tmp;
+    return tmp = error;
 }
 
 template <class T>
 T Cdeque<T>::pop_front() {
-    T tmp = error;
+    T tmp;
     if (BACK != FRONT || back > front+1) {
         if (front != 9)
             tmp = *(map[FRONT]+ ++front);
@@ -82,7 +82,7 @@ T Cdeque<T>::pop_front() {
             tmp = *map[++FRONT];
         }
     }
-    return tmp;
+    return tmp = error;
 }
 
 template <class T>
