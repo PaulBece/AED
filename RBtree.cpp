@@ -92,6 +92,7 @@ void RBtree<T>::redUncle(y** f, bool leftFather) {
 
 template <class T>
 void RBtree<T>::blackUncle(y** &f, bool leftChild, bool leftFather) {
+
 	if (leftChild && leftFather) {//lineleft(/)
 
 		if ((*f)->up->up) {//tiene bisabuelo?
@@ -107,7 +108,33 @@ void RBtree<T>::blackUncle(y** &f, bool leftChild, bool leftFather) {
 					tmp1->up = (*f)->right;//BRu->C
 				}
 			}
+			else {//el abuelo es hijo derecho
+				(*f)->up->up->right = (*f);//r->B
+				y* tmp1 = (*f)->right;//tmp1->Br
+				(*f)->right = (*f)->up;//Br->C
+				(*f)->up = (*f)->up->up;//Bu->r
+				(*f)->right->up = *f;//Cu->B
+				f = &((*f)->up->right);//f->r
+				(*f)->right->left = tmp1;//Cl->Br
+				if (tmp1) {//existe Br?
+					tmp1->up = (*f)->right;//BRu->C
+				}
+			}
 		}
+		else {//no tiene bisabuelo
+			root = (*f);//r->B
+			y* tmp1 = (*f)->right;//tmp1->Br
+			(*f)->right = (*f)->up;//Br->C
+			(*f)->up = 0;//Bu->r
+			(*f)->right->up = *f;//Cu->B
+			f = &root;//f->r
+			(*f)->right->left = tmp1;//Cl->Br
+			if (tmp1) {//existe Br?
+				tmp1->up = (*f)->right;//BRu->C
+			}			
+		}
+		changeColor(*f);
+		changeColor((*f)->right);
 	}
 
 	else if (leftChild && !leftFather) {//righttriangle(>)
@@ -146,10 +173,10 @@ void RBtree<T>::balance(stack<y**>& s) {
 					}
 				}
 			}
-			if ((*s.top())->right) {
+			if ((*s.top())->red  && (*s.top())->right) {
 				if ((*s.top())->right->red) {
-					if ((*s.top())->up->left == (*s.top())){
-						if ((*s.top())->up->right->red)
+					if ((*s.top())->up->right == (*s.top())){
+						if ((*s.top())->up->left && (*s.top())->up->left->red)
 							redUncle(s.top(), 1);
 						else
 							blackUncle(s.top(), 0, 1);
@@ -167,6 +194,8 @@ void RBtree<T>::balance(stack<y**>& s) {
 			return;
 		s.pop();
 	}
+	if (root->red)
+		changeColor(root);
 }
 
 
@@ -185,7 +214,10 @@ template <class T>
 void RBtree<T>::inOrder(y* r) {
 	if (!r) return;
 	inOrder(r->left);
-	cout << r->valor << "-" << r->getFather() << "  ";
+	if (r->red)
+		cout << r->valor << "-" << r->getFather() << "-R  ";
+	else
+		cout << r->valor << "-" << r->getFather() << "-B  ";
 	inOrder(r->right);
 }
 
@@ -196,6 +228,7 @@ int main() {
 	//t1.insert(75);
 	t1.insert(13);
 	//t1.insert(63);
+	t1.insert(1);
 
 	t1.print();
 
