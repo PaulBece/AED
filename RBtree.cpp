@@ -337,13 +337,13 @@ void RBtree<T>::fixRem(y** &p, y* q) {
 							if ((*p)->lor) {
 								blackUncle(p, 1, 0);
 								changeColor((*p)->left);
-								changeColor((*p)->right);
+								//changeColor((*p)->right);
 							}
 							else {
 								blackUncle(p, 1, 1);
 								changeColor((*p));
 								changeColor((*p)->right);
-								changeColor((*p)->left);
+								//changeColor((*p)->left);
 							}
 							dBlack = 0;
 						}
@@ -353,12 +353,12 @@ void RBtree<T>::fixRem(y** &p, y* q) {
 								blackUncle(p, 0, 0);
 								changeColor((*p));
 								changeColor((*p)->left);
-								changeColor((*p)->right);
+								//changeColor((*p)->right);
 							}
 							else {
 								blackUncle(p, 0, 1);
 								changeColor((*p)->right);
-								changeColor((*p)->left);
+								//changeColor((*p)->left);
 							}
 							dBlack = 0;
 						}
@@ -491,6 +491,7 @@ bool RBtree<T>::remove(T v) {
 		}
 	}
 	if (!originalColor) fixRem(p,q);
+	return 1;
 }
 
 template <class T>
@@ -511,6 +512,10 @@ void RBtree<T>::inOrder(y* r) {
 
 int main() {
 	RBtree<int> t1;
+
+	/*for (int i = 1; i <= 100; i++)
+		t1.insert(i * 10);*/
+
 	t1.insert(50);
 
 	t1.insert(25);
@@ -527,7 +532,7 @@ int main() {
 	t1.remove(80);
 	t1.remove(55);
 	t1.remove(50);
-	//t1.remove(13);
+	t1.remove(13);
 
 	t1.print();
 
